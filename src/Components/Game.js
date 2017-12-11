@@ -10,47 +10,72 @@ class Game extends Component {
   constructor () {
     super()
     this.state = {
+      lastVictory: null,
+      loaded: false,
       status: false,
-      player1: {
-        name: 'Loading...',
-        vehicle: {
+      players:{
+        player1: {
           name: 'Loading...',
-          cargo: 'Loading...',
-          speed: 'Loading...'
-        }
-      },
-      player2: {
-        name: 'Loading...',
-        vehicle: {
+          vehicle: {
+            name: 'Loading...',
+            cargo: 'Loading...',
+            speed: 'Loading...'
+          }
+        },
+        player2: {
           name: 'Loading...',
-          cargo: 'Loading...',
-          speed: 'Loading...'
+          vehicle: {
+            name: 'Loading...',
+            cargo: 'Loading...',
+            speed: 'Loading...'
+          }
         }
       }
     }
   }
+  StartMatch = () => {
+    this.setState( prevState => {
+      prevState.status = true
+      return prevState
+    })
+  }
+  EndMatch = (stats) => {
+    getListOfPlayers(this.SetPlayers)
+    this.setState(prevState => {
+      prevState.status = false
+    })
+  }
   SetPlayers = players => {
-    this.setState( prevstate => {
-      prevstate.player1= players.player1
-      prevstate.player2= players.player2
-      return prevstate
+    this.setState( prevState => {
+      prevState.loaded = true
+      prevState.players= {
+        player1: players.player1,
+        player2: players.player2
+      }
+      return prevState
     }
 
   )}
   componentDidMount () {
     getListOfPlayers(this.SetPlayers)
   }
+  handleReroll = () => {
+    getListOfPlayers(this.SetPlayers)
+  }
   render () {
     return (
       <div className='game-zone'>
         <div className='game-section'>
-          <Player data={this.state.player1} player='Player 1'/>
+          <Player data={this.state.players.player1} player='Player 1'/>
         </div>
         <div className='game-section'>
-          <Match status={this.state.status} title='Match rules' />
+          <Match players={this.state.players} status={this.state.status} loaded={this.state.loaded} title='Match rules' StartMatch={this.StartMatch} EndMatch={this.EndMatch}/>
         </div>
         <div className='game-section'>
-          <Player data={this.state.player2} player='Player 2'/>
+          <Player data={this.state.players.player2} player='Player 2'/>
+        </div>
+        <div>
+          <button type='button' onClick={this.handleReroll}>Chage players</button>
         </div>
       </div>
     )
