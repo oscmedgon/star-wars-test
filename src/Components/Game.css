@@ -1,0 +1,19 @@
+.game-zone{
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+}
+
+.game-section{
+  width: 33vw;
+  text-align: center;
+  min-width: 300px;
+  color:white;
+}
+
+.game-section:first-child h1{
+  color: #8072EA;
+}
+.game-section:last-child h1{
+  color: #ED0427;
+}

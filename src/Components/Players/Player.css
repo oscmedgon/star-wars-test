@@ -1,0 +1,5 @@
+.players li{
+  list-style-type: none;
+  color: white;
+  text-align: left;
+}
