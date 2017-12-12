@@ -35,7 +35,7 @@ const setVehicles = async (players, vehicleCount, SetPlayers) => {
     const randomVehicle = Math.floor(Math.random() * vehicles)
     Vehicles.player2 = await axios.get(players.player2.data.vehicles[randomVehicle])
   } else {
-        Vehicles.player2 = await axios.get(`https://swapi.co/api/vehicles/24/?format=json`)
+        Vehicles.player2 = await axios.get(`https://swapi.co/api/vehicles/14/?format=json`)
   }
   return SetPlayersInfo(players, Vehicles, SetPlayers)
 }

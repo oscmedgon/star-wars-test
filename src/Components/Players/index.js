@@ -29,10 +29,8 @@ class Player extends Component {
     return (
       <div className='players'>
         <h1>{this.props.player}</h1>
+        <h2>{this.state.name}</h2>
         <ul>
-          <li>
-            Name: <span>{this.state.name}</span>
-          </li>
           <li>
             Vehicle: <span>{this.state.vehicle.name}</span>
           </li>
