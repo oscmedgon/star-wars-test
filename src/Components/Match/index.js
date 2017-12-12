@@ -81,19 +81,43 @@ class Match extends Component {
             <p>{this.state.rules.distance} Km</p>
           </li>
         </ul>
-        <div>
-          <h2>
-            Last Match Stats
-          </h2>
-          <div className='match-stats'>
+          {this.state.stats ? (
             <div>
-              Hola
+              <h2>
+              Last Match Stats
+              </h2>
+              <div className='match-stats'>
+                <div>
+                  <ul>
+                    <li>
+                      Total Travels: <strong>{this.state.stats.player1.travels}</strong>
+                    </li>
+                    <li>
+                      Time per Travel: <strong>{this.state.stats.player1.time} Hours</strong>
+                    </li>
+                    <li>
+                      Total Time: <strong>{this.state.stats.player1.totalTime} Hours</strong>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <ul>
+                    <li>
+                      Total Travels: <strong>{this.state.stats.player2.travels}</strong>
+                    </li>
+                    <li>
+                      Time per Travel: <strong>{this.state.stats.player2.time} Hours</strong>
+                    </li>
+                    <li>
+                      Total Time: <strong>{this.state.stats.player2.totalTime} Hours</strong>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
-            <div>
-              Hola
-            </div>
-          </div>
-        </div>
+            ) :
+            <div></div>
+          }
         {this.props.status || !this.props.loaded ?
             (<img src='https://thumbs.gfycat.com/AmazingDazzlingFrog-max-1mb.gif' alt='loading' height='100' />) :
             (
