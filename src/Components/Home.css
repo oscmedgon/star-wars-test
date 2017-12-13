@@ -1,0 +1,20 @@
+.main-menu{
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  height: 100vh;
+}
+.main-menu > *{
+  height: 300px;
+  text-align: center;
+}
+.main-menu a{
+  text-decoration: none;
+  color: white;
+  text-align: center;
+  font-size: 30px;
+text-shadow: 0px 0px 10px black;
+}
+h2{
+  margin: 0px;
+}

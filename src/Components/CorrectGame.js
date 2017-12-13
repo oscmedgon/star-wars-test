@@ -1,12 +1,12 @@
 import React, {Component} from 'react'
 
-import {getListOfPlayers} from '../Services'
+import {getListOfPlayersSlow} from '../Services'
 import './Game.css'
 
 import Player from './Players'
 import Match from './Match'
 
-class Game extends Component {
+class CorrectGame extends Component {
   constructor () {
     super()
     this.state = {
@@ -63,7 +63,7 @@ class Game extends Component {
       }
       return prevState
     })
-    getListOfPlayers(this.SetPlayers)
+    getListOfPlayersSlow(this.SetPlayers)
   }
   SetPlayers = players => {
     this.setState( prevState => {
@@ -77,7 +77,7 @@ class Game extends Component {
 
   )}
   componentDidMount () {
-    getListOfPlayers(this.SetPlayers)
+    getListOfPlayersSlow(this.SetPlayers)
   }
   handleReroll = () => {
     this.setState(prevState => {
@@ -103,7 +103,7 @@ class Game extends Component {
       }
       return prevState
     })
-    getListOfPlayers(this.SetPlayers)
+    getListOfPlayersSlow(this.SetPlayers)
   }
   render () {
     return (
@@ -122,4 +122,4 @@ class Game extends Component {
   }
 }
 
-export default Game
+export default CorrectGame

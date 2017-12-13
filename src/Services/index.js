@@ -8,6 +8,18 @@ const getListOfPlayers = async (SetPlayers) => {
 
   return setPlayers(playersNum, vehiclesNum, SetPlayers)
 }
+const getListOfPlayersSlow = async (SetPlayers) => {
+  const baseUrl = 'https://swapi.co/api/people/?format=json&page='
+  let data = []
+  const peopleResponse = await axios.get('https://swapi.co/api/people/?format=json')
+  const playersPages = peopleResponse.data.count / 10
+  for (let i = 1; i < playersPages + 1; i++) {
+    const response = await axios.get(baseUrl + i)
+    data = [...data, ...response.data.results]
+  }
+  const Players = data.filter(player => player.vehicles.length)
+  console.log(Players)
+}
 
 const setPlayers = async (playerCount, vehicleCount, SetPlayers) => {
   const player1 = Math.floor(Math.random() * playerCount + 1)
@@ -61,4 +73,4 @@ const SetPlayersInfo = (players, vehicles, SetPlayers) => {
   SetPlayers(Players)
 }
 
-export {getListOfPlayers}
+export {getListOfPlayers, getListOfPlayersSlow}
