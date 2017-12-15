@@ -75,8 +75,8 @@ class CorrectGame extends Component {
   }
   SetPlayers = Players => {
     console.log(Players.player1)
-    console.log(Players.vehicles)
-    console.log(Players.vehicles[0])
+    console.log(Players.player1.vehicles)
+    console.log(Players.player1.vehicles[0])
     this.setState( prevState => {
       prevState.loaded = true
       prevState.players= {
