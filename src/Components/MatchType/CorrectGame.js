@@ -66,38 +66,41 @@ class CorrectGame extends Component {
     })
     getListOfPlayersSlow(this.SetPlayers)
   }
-  SetParticipants = players => {
+  SetParticipants = (players) => {
     this.setState( prevState => {
       prevState.participants = players
       return prevState
     })
-    const {player1, player2} = RandomPlayers(players)
-    this.SetPlayers( {player1, player2})
+
+    const Players = RandomPlayers(players)
+    this.SetPlayers(Players)
   }
   SetPlayers = Players => {
-    console.log(Players)
-    console.log(Players.player1)
-    console.log(Players.player1.vehicles)
+    const {player1 , player2} = Players
+    console.log(player1)
+    debugger
+    console.log(player1.vehicles)
     this.setState( prevState => {
       prevState.loaded = true
       prevState.players= {
         player1: {
-          name: Players.player1.name,
+          name: player1.name,
           vehicle: {
-            name: Players.player1.vehicles[0].name,
-            cargo: Players.player1.vehicles[0].cargo_capacity,
-            speed: Players.player1.vehicles[0].max_atmosphering_speed
+            name: player1.vehicles[0].name,
+            cargo: player1.vehicles[0].cargo_capacity,
+            speed: player1.vehicles[0].max_atmosphering_speed
           }
         },
         player2: {
-          name: Players.player2.name,
+          name: player2.name,
           vehicle: {
-            name: Players.player2.vehicles[0].name,
-            cargo: Players.player2.vehicles[0].cargo_capacity,
-            speed: Players.player2.vehicles[0].max_atmosphering_speed
+            name: player2.vehicles[0].name,
+            cargo: player2.vehicles[0].cargo_capacity,
+            speed: player2.vehicles[0].max_atmosphering_speed
           }
         }
       }
+      console.log(prevState)
       return prevState
     }
 
