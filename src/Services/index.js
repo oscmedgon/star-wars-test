@@ -8,18 +8,6 @@ const getListOfPlayers = async (SetPlayers) => {
 
   return setPlayers(playersNum, vehiclesNum, SetPlayers)
 }
-const getListOfPlayersSlow = async (SetParticipants) => {
-  const baseUrl = 'https://swapi.co/api/people/?format=json&page='
-  let data = []
-  const peopleResponse = await axios.get('https://swapi.co/api/people/?format=json')
-  const playersPages = peopleResponse.data.count / 10
-  for (let i = 1; i < playersPages + 1; i++) {
-    const response = await axios.get(baseUrl + i)
-    data = [...data, ...response.data.results]
-  }
-  const Players = data.filter(player => player.vehicles.length)
-  SetParticipants(Players)
-}
 
 const setPlayers = async (playerCount, vehicleCount, SetPlayers) => {
   const player1 = Math.floor(Math.random() * playerCount + 1)
@@ -47,7 +35,7 @@ const setVehicles = async (players, vehicleCount, SetPlayers) => {
     const randomVehicle = Math.floor(Math.random() * vehicles)
     Vehicles.player2 = await axios.get(players.player2.data.vehicles[randomVehicle])
   } else {
-        Vehicles.player2 = await axios.get(`https://swapi.co/api/vehicles/14/?format=json`)
+    Vehicles.player2 = await axios.get(`https://swapi.co/api/vehicles/14/?format=json`)
   }
   return SetPlayersInfo(players, Vehicles, SetPlayers)
 }
@@ -71,6 +59,33 @@ const SetPlayersInfo = (players, vehicles, SetPlayers) => {
     }
   }
   SetPlayers(Players)
+}
+
+const getListOfPlayersSlow = async (SetParticipants) => {
+  const baseUrl = 'https://swapi.co/api/people/?format=json&page='
+  let data = []
+  const peopleResponse = await axios.get('https://swapi.co/api/people/?format=json')
+  const playersPages = peopleResponse.data.count / 10
+  for (let i = 1; i < playersPages + 1; i++) {
+    const response = await axios.get(baseUrl + i)
+    data = [...data, ...response.data.results]
+  }
+  const Players = data.filter(player => player.vehicles.length)
+  loadVehicles(Players, SetParticipants)
+}
+const loadVehicles = (players, SetParticipants) => {
+  const response = players.map(player => {
+    const Vehicles = player.vehicles.map(async (vehicle, i) => {
+      const Vehicle = await axios.get(vehicle)
+      return Vehicle.data
+    })
+    Promise.all(Vehicles)
+    .then(response => {
+      player.vehicles = response
+    })
+    return player
+  })
+  SetParticipants(response)
 }
 
 export {getListOfPlayers, getListOfPlayersSlow}
