@@ -2,8 +2,8 @@ import React from 'react'
 import {Switch, Route} from 'react-router-dom'
 
 import Home from './Components/Home'
-import FastGame from './Components/FastGame'
-import CorrectGame from './Components/CorrectGame'
+import FastGame from './Components/MatchType/FastGame'
+import CorrectGame from './Components/MatchType/CorrectGame'
 
 const App = () => (
   <Switch>

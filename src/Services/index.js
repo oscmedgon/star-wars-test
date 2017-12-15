@@ -8,7 +8,7 @@ const getListOfPlayers = async (SetPlayers) => {
 
   return setPlayers(playersNum, vehiclesNum, SetPlayers)
 }
-const getListOfPlayersSlow = async (SetPlayers) => {
+const getListOfPlayersSlow = async (SetParticipants) => {
   const baseUrl = 'https://swapi.co/api/people/?format=json&page='
   let data = []
   const peopleResponse = await axios.get('https://swapi.co/api/people/?format=json')
@@ -18,7 +18,7 @@ const getListOfPlayersSlow = async (SetPlayers) => {
     data = [...data, ...response.data.results]
   }
   const Players = data.filter(player => player.vehicles.length)
-  console.log(Players)
+  SetParticipants(Players)
 }
 
 const setPlayers = async (playerCount, vehicleCount, SetPlayers) => {

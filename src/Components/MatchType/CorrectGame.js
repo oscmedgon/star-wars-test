@@ -1,10 +1,11 @@
 import React, {Component} from 'react'
 
-import {getListOfPlayersSlow} from '../Services'
+import {getListOfPlayersSlow} from '../../Services'
+import {RandomPlayers} from '../../Utils'
 import './Game.css'
 
-import Player from './Players'
-import Match from './Match'
+import Player from '../Players'
+import Match from '../Match'
 
 class CorrectGame extends Component {
   constructor () {
@@ -65,19 +66,25 @@ class CorrectGame extends Component {
     })
     getListOfPlayersSlow(this.SetPlayers)
   }
+  SetParticipants = players => {
+    this.setState( prevState => {
+      prevState.participants = players
+      return prevState
+    })
+    RandomPlayers(players, this.SetPlayers)
+    console.log(this.state)
+  }
   SetPlayers = players => {
     this.setState( prevState => {
       prevState.loaded = true
-      prevState.players= {
-        player1: players.player1,
-        player2: players.player2
-      }
+      prevState.players= players
+      console.log(prevState)
       return prevState
     }
 
   )}
   componentDidMount () {
-    getListOfPlayersSlow(this.SetPlayers)
+    getListOfPlayersSlow(this.SetParticipants)
   }
   handleReroll = () => {
     this.setState(prevState => {
@@ -103,7 +110,7 @@ class CorrectGame extends Component {
       }
       return prevState
     })
-    getListOfPlayersSlow(this.SetPlayers)
+    getListOfPlayersSlow(this.SetParticipants)
   }
   render () {
     return (

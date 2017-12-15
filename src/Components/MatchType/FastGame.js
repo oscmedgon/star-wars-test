@@ -1,10 +1,10 @@
 import React, {Component} from 'react'
 
-import {getListOfPlayers} from '../Services'
+import {getListOfPlayers} from '../../Services'
 import './Game.css'
 
-import Player from './Players'
-import Match from './Match'
+import Player from '../Players'
+import Match from '../Match'
 
 class FastGame extends Component {
   constructor () {
