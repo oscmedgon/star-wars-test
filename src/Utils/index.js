@@ -53,12 +53,12 @@ function checkPlayers (players, rules) {
   }
   return stats
 }
-function RandomPlayers (players, SetPlayers) {
+function RandomPlayers (players) {
   const Players = {}
   for (let i = 1; i < 3; i++) {
     Players[`player${i}`] = players[Math.floor(Math.random() * players.length)]
   }
-  SetPlayers(Players)
+  return Players
 }
 
 export {setRules, checkPlayers, RandomPlayers}

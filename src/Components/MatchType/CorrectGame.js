@@ -71,12 +71,13 @@ class CorrectGame extends Component {
       prevState.participants = players
       return prevState
     })
-    RandomPlayers(players, this.SetPlayers)
+    const {player1, player2} = RandomPlayers(players)
+    this.SetPlayers( {player1, player2})
   }
   SetPlayers = Players => {
+    console.log(Players)
     console.log(Players.player1)
     console.log(Players.player1.vehicles)
-    console.log(Players.player1.vehicles[0])
     this.setState( prevState => {
       prevState.loaded = true
       prevState.players= {

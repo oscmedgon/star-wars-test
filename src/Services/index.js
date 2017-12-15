@@ -85,6 +85,7 @@ const loadVehicles = (players, SetParticipants) => {
     })
     return player
   })
+  console.log(response)
   SetParticipants(response)
 }
 
