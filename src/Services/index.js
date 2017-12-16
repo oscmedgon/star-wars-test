@@ -94,7 +94,6 @@ const loadVehicles = async (players, SetParticipants) => {
       }
       NewPlayer.vehicle = vehicle
     })
-    console.log(NewPlayer)
     return NewPlayer
   })
   SetParticipants(response)

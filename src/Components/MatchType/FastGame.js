@@ -66,6 +66,7 @@ class FastGame extends Component {
     getListOfPlayers(this.SetPlayers)
   }
   SetPlayers = players => {
+    console.log(players)
     this.setState( prevState => {
       prevState.loaded = true
       prevState.players= {
@@ -109,13 +110,13 @@ class FastGame extends Component {
     return (
       <div className='game-zone'>
         <div className='game-section'>
-          <Player data={this.state.players.player1} player='Player 1'/>
+          <Player playerName={this.state.players.player1.name} vehicle={this.state.players.player1.vehicle} player='Player 1'/>
         </div>
         <div className='game-section'>
           <Match players={this.state.players} status={this.state.status} loaded={this.state.loaded} title='VS' StartMatch={this.StartMatch} EndMatch={this.EndMatch} handleReroll={this.handleReroll} />
         </div>
         <div className='game-section'>
-          <Player data={this.state.players.player2} player='Player 2'/>
+          <Player playerName={this.state.players.player2.name} vehicle={this.state.players.player2.vehicle} player='Player 2'/>
         </div>
       </div>
     )

@@ -21,21 +21,15 @@ class Match extends Component {
       }
     }
   }
-  componentDidMount () {
-    console.log()
+  SetRules () {
     const rules = setRules()
-    this.setState({
-      players: this.props.players,
-      history: {
-        player1: {
-          victory: 0
-        },
-        player2: {
-          victory: 0
-        }
-      },
-      rules: rules
+    this.setState( prevState => {
+      prevState.rules= rules
+      return prevState
     })
+  }
+  componentDidMount () {
+    this.SetRules()
   }
   componentWillReceiveProps (props) {
     this.setState(prevState => {
@@ -43,6 +37,7 @@ class Match extends Component {
       return prevState
     })
   }
+
   handleStart = async () => {
     this.props.StartMatch()
     this.checkMatch()
@@ -65,6 +60,7 @@ class Match extends Component {
       return prevState
     })
     this.matchFinished()
+    this.SetRules()
   }
   render () {
     return (
@@ -123,7 +119,7 @@ class Match extends Component {
             (
               <div>
                 <button className='btn btn-start' type='button' onClick={this.handleStart}>START</button>
-                <button className='btn btn-reset' type='button' onClick={this.props.handleReroll}>Change players</button>
+                <button className='btn btn-reset' type='button' onClick={this.props.handleReroll}>Change Players</button>
               </div>
             )
         }

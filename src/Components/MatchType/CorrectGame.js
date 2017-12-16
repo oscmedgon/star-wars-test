@@ -59,11 +59,9 @@ class CorrectGame extends Component {
     this.setState( prevState => {
       prevState.loaded = true
       prevState.players= Players
-      console.log(prevState)
       return prevState
-    }
-
-  )}
+    })
+}
   componentDidMount () {
     getListOfPlayersSlow(this.SetParticipants)
   }
