@@ -123,7 +123,7 @@ class Match extends Component {
             (
               <div>
                 <button className='btn btn-start' type='button' onClick={this.handleStart}>START</button>
-                <button className='btn btn-reset' type='button' onClick={this.props.handleReroll}>Chage players</button>
+                <button className='btn btn-reset' type='button' onClick={this.props.handleReroll}>Change players</button>
               </div>
             )
         }

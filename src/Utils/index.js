@@ -58,7 +58,6 @@ function RandomPlayers (players) {
   for (let i = 1; i < 3; i++) {
     Players[`player${i}`] = players[Math.floor(Math.random() * players.length)]
   }
-  console.log("random: "+Players.player1.vehicles)
   return Players
 }
 

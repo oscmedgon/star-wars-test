@@ -75,15 +75,27 @@ const getListOfPlayersSlow = async (SetParticipants) => {
 }
 const loadVehicles = async (players, SetParticipants) => {
   const response = await players.map(player => {
+    const {name} = player
+    let NewPlayer = {
+      name: name,
+      vehicle: {}
+    }
     const VehiclesMaper = player.vehicles.map(async (vehicle, i) => {
       const Vehicle = await axios.get(vehicle)
       return Vehicle.data
     })
     Promise.all(VehiclesMaper)
     .then(response => {
-      player.vehicles = response
+      const {name, cargo_capacity, max_atmosphering_speed} = response[0]
+      const vehicle = {
+        name: name,
+        cargo: cargo_capacity,
+        speed: max_atmosphering_speed
+      }
+      NewPlayer.vehicle = vehicle
     })
-    return player
+    console.log(NewPlayer)
+    return NewPlayer
   })
   SetParticipants(response)
 }

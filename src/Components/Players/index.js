@@ -15,13 +15,13 @@ class Player extends Component {
     }
   }
   componentWillReceiveProps (props) {
-    const {data} = props
+    const {playerName, vehicle} = props
     this.setState({
-      name: data.name,
+      name: playerName,
       vehicle: {
-        name: data.vehicle.name,
-        cargo: data.vehicle.cargo,
-        speed: data.vehicle.speed
+        name: vehicle.name,
+        cargo: vehicle.cargo,
+        speed: vehicle.speed
       }
     })
   }
